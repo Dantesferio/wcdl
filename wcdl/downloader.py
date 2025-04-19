@@ -85,7 +85,8 @@ def download_chapter_progress(manga_name: str, chapter_name: str, chapter_id: st
         return 3
     chapter_images = query_chapter_images(chapter_id)
     with Progress() as prog:
-        task = prog.add_task(f"[blue bold] Downloading {chapter_name}", total=len(chapter_images))
+        task = prog.add_task(
+            f"[blue bold] Downloading {chapter_name}", total=len(chapter_images))
         with futures.ThreadPoolExecutor(max_workers=10) as executor:
             threads = []
             threads_urls = {}
@@ -100,7 +101,8 @@ def download_chapter_progress(manga_name: str, chapter_name: str, chapter_id: st
                     threads.append(
                         executor.submit(download, threads_urls[thread])
                     )
-                    warn(f"connection error with code {thread.result()} while downloading images of chapter, retrying...")
+                    warn(
+                        f"connection error with code {thread.result()} while downloading images of chapter, retrying...")
 
                 prog.update(task, refresh=True, advance=1)
 
@@ -139,7 +141,8 @@ def download_chapters_progress(manga_name: str, chapters: list[dict]) -> list:
 def save_data_to_json(manga_name: str, chapters: list[dict]):
     data = {}
     with Progress() as prog:
-        task = prog.add_task(f"[blue bold] getting download links for {manga_name}", total=len(chapters))
+        task = prog.add_task(
+            f"[blue bold] getting download links for {manga_name}", total=len(chapters))
         for chapter in chapters:
             data[chapter["name"]] = {
                 "id": chapter["id"]
@@ -148,7 +151,6 @@ def save_data_to_json(manga_name: str, chapters: list[dict]):
 
             data[chapter["name"]]["links"] = images
             prog.update(task, refresh=True, advance=1)
-
 
     with open(f"{manga_name}.json", "w") as file:
         json.dump(data, file)

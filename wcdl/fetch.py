@@ -18,7 +18,6 @@ headers = {
 }
 
 
-
 def search(query: str) -> list[dict]:
     """
     output scheme:
@@ -43,7 +42,8 @@ def search(query: str) -> list[dict]:
         'display_mode': 'Full Display',
     }
 
-    page = requests.get(f'https://{host}/search/data', params=params, headers=headers)
+    page = requests.get(f'https://{host}/search/data',
+                        params=params, headers=headers)
 
     if page.status_code != 200:
         error(f"Connection error: {page.status_code}")
@@ -80,8 +80,9 @@ def search(query: str) -> list[dict]:
             "tags": tags,
             "id": manga_id,
         })
-    
+
     return results
+
 
 def query_chapters(manga_id: str) -> list[dict]:
     """
@@ -99,7 +100,8 @@ def query_chapters(manga_id: str) -> list[dict]:
         )
 
     """
-    chap_list = requests.get(f"https://{host}/series/{manga_id}/full-chapter-list", headers=headers)
+    chap_list = requests.get(
+        f"https://{host}/series/{manga_id}/full-chapter-list", headers=headers)
     if chap_list.status_code != 200:
         error(f"Connection error: {chap_list.status_code}")
         exit(1)
@@ -120,6 +122,7 @@ def query_chapters(manga_id: str) -> list[dict]:
     reuslts.reverse()
     return reuslts
 
+
 def query_chapter_images(chap_id: str) -> list[str]:
     """
     input scheme: chapter recived from query_chapters function
@@ -128,11 +131,11 @@ def query_chapter_images(chap_id: str) -> list[str]:
         )
     """
 
-    chap_images = requests.get(f"https://{host}/chapters/{chap_id}/images?is_prev=False&current_page=1&reading_style=long_strip", headers=headers)
+    chap_images = requests.get(
+        f"https://{host}/chapters/{chap_id}/images?is_prev=False&current_page=1&reading_style=long_strip", headers=headers)
     if chap_images.status_code != 200:
         error(f"connection error, status code: {chap_images.status_code}")
         exit(1)
-        
 
     chap_images_soup = BeautifulSoup(chap_images.text, "html.parser")
 
