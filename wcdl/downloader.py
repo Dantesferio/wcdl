@@ -6,8 +6,8 @@ import concurrent.futures as futures
 from urllib import parse
 from rich.progress import Progress
 import json
-from src.fetch import query_chapter_images, headers
-from src.tools import warn
+from wcdl.fetch import query_chapter_images, headers
+from wcdl.tools import warn
 
 
 def make_cbz(files: list[str], output: str, del_files=False) -> int:

@@ -1,13 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 from rich.progress import Progress
-import json
 import sqlite3
 from pathlib import Path
 import os
-from src.tools import error
+from wcdl.tools import error
 from pyfzf.pyfzf import FzfPrompt
-from src.fetch import headers
+from wcdl.fetch import headers
 
 host = "weebcentral.com"
 

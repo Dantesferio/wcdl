@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "cli manga downloader"
 readme = "README.md"
 requires-python = ">=3.8"
-license = "GPL3"
+license = "GPL-3.0"
 
 authors = [
     {name = "Rebin Mahmoudi", email = "rebinmahmoudi14@gmail.com"},
@@ -28,8 +28,6 @@ dependencies = [
     'importlib-metadata; python_version<"3.10"'
 ]
 
-[tool.setuptools.packages.find]
-where = ["wcdl"]
 
 [project.scripts]
-wcdl = "wcdl:wcdl.py"
+wcdl = "wcdl.wcdl:main"

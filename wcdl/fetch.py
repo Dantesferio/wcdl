@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from src.tools import error
+from wcdl.tools import error
 
 host = "weebcentral.com"
 

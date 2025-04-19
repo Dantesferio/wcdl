@@ -1,11 +1,11 @@
 #!/usr/bin/python
 import rich.prompt
-import src.fetch as fetch
-import src.downloader as downloader
-import src.database as database
+import wcdl.fetch as fetch
+import wcdl.downloader as downloader
+import wcdl.database as database
 import argparse
 import rich
-from src.tools import notic, error, warn, success, range_parser
+from wcdl.tools import notic, error, warn, success, range_parser
     
 def main():
     parser = argparse.ArgumentParser("wcdl", formatter_class=argparse.RawTextHelpFormatter)
