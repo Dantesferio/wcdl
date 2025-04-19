@@ -58,7 +58,8 @@ def main():
     if args.update_database:
         database.update_database()
         success("updated the database")
-
+        exit(0)
+    
     if args.search == "" and args.local_search == False:
         search_prompt = rich.prompt.Prompt.ask("[blue bold] search manga ")
     elif args.search == "" and args.local_search == True:
